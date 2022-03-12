@@ -1,0 +1,24 @@
+{
+    "name": "hemend/library",
+    "description": "Hemend libraries",
+    "keywords" : [
+        "hemend",
+        "library"
+    ],
+    "type": "library",
+    "require": {
+        "php": ">=7.4"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Hemend\\Library\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "balal",
+            "email": "arastbalal@gmail.com"
+        }
+    ]
+}
