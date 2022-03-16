@@ -135,6 +135,11 @@ class Sms {
         curl_setopt($ch, CURLOPT_POSTFIELDS, $postString);
 
         $result = curl_exec($ch);
+
+        if($result === false) {
+            return false;
+        }
+
         curl_close($ch);
 
         return json_decode($result);
