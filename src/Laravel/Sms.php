@@ -138,7 +138,7 @@ class Sms {
 
         if($result === false) {
             if(config('library.sms.debug_mode')) {
-                throw new Exception(curl_error($ch));
+                throw new \Exception(curl_error($ch));
             }
             return false;
         }
