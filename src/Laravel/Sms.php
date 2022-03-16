@@ -3,25 +3,34 @@
 namespace Hemend\Library\Laravel;
 
 class Sms {
-    static public $api_key;
-    static public $version;
-    static public $is_test;
+    static protected $instance;
+    protected $api_key;
+    protected $version;
+    protected $is_test;
 
     /**
      * Gets config parameters for sending request.
      *
-     * @param string $api_key   API Key
-     * @param string $version   API Version
-     * @param string $is_test   Is Test Api
-
-     *
      * @return void
      */
-    public function __construct($api_key, $version, $is_test)
+    public function __construct()
     {
-        self::$api_key = $api_key;
-        self::$version = $version;
-        self::$is_test = $is_test;
+        $this->api_key = config('library.sms.api_key');
+        $this->version = config('library.sms.version');
+        $this->is_test = config('library.sms.is_test');
+    }
+
+    /**
+     * Gets Api Url.
+     *
+     * @return string Indicates the Url
+     */
+    public function getInstance($api_key, $version, $is_test) {
+        if(self::$instance === null) {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
     }
 
     /**
@@ -30,7 +39,7 @@ class Sms {
      * @return string Indicates the Url
      */
     protected function getAPIMessageSendUrl() {
-        return 'https://sms.hemend.com/api/'.(self::$is_test ? 'test' : 'main').'/'.self::$version;
+        return 'https://sms.hemend.com/api/'.($this->is_test ? 'test' : 'main').'/'.$this->version;
     }
 
     /**
@@ -66,7 +75,7 @@ class Sms {
 
     private function _getCacheTokenKey()
     {
-        return 'token_' . self::$is_test;
+        return 'token_' . $this->is_test;
     }
 
     /**
@@ -84,7 +93,7 @@ class Sms {
 
         if(!$token) {
             $postData = array(
-                'api_key' => self::$api_key,
+                'api_key' => $this->api_key,
             );
 
             $url = $this->getAPIMessageSendUrl() . '/auth.generateToken';
