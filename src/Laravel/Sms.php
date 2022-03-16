@@ -25,7 +25,7 @@ class Sms {
      *
      * @return string Indicates the Url
      */
-    public function getInstance($api_key, $version, $is_test) {
+    static public function getInstance($api_key, $version, $is_test) {
         if(self::$instance === null) {
             self::$instance = new self();
         }
