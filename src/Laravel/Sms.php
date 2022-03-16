@@ -52,9 +52,11 @@ class Sms {
      *
      * @return string Indicates the sent sms result
      */
-    public function sendMessage(string $mobile_number, string $message, string $send_date_time=null)
+    static public function sendMessage(string $mobile_number, string $message, string $send_date_time=null)
     {
-        $token = $this->_getToken();
+        $sms = self::getInstance();
+
+        $token = $sms->_getToken();
 
         if ($token) {
             $postData = array(
@@ -63,8 +65,8 @@ class Sms {
                 'send_date_time' => $send_date_time,
             );
 
-            $url = $this->getAPIMessageSendUrl() . '/message.send';
-            $response = $this->_execute($postData, $url, $token);
+            $url = $sms->getAPIMessageSendUrl() . '/message.send';
+            $response = $sms->_execute($postData, $url, $token);
             $result = is_object($response) ? $response : false;
         } else {
             $result = false;
