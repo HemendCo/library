@@ -20,5 +20,15 @@
             "name": "balal",
             "email": "arastbalal@gmail.com"
         }
-    ]
+    ],
+    "extra" : {
+        "laravel" : {
+            "providers" : [
+                "Hemend\\Library\\Laravel\\Providers\\LibraryServiceProvider"
+            ],
+            "aliases" : {
+                "Foundation" : "Hemend\\Library\\Laravel\\Facades\\Library"
+            }
+        }
+    }
 }
