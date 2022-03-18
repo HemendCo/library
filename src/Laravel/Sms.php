@@ -98,7 +98,7 @@ class Sms {
                 'api_key' => $this->api_key,
             );
 
-            $url = $this->getAPIMessageSendUrl() . '/auth.generateToken';
+            $url = $this->getAPIMessageSendUrl() . '/auth.getToken';
             $token_res = $this->_execute($postData, $url);
 
             if (is_object($token_res) && $token_res->status_code === 'OK') {
