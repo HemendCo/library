@@ -5,6 +5,7 @@ namespace Hemend\Library\Laravel;
 class Sms {
     static protected $instance;
     protected $api_key;
+    protected $secret_key;
     protected $version;
     protected $is_test;
 
@@ -15,9 +16,10 @@ class Sms {
      */
     public function __construct()
     {
-        $this->api_key = config('library.sms.api_key');
-        $this->version = config('library.sms.version');
-        $this->is_test = config('library.sms.is_test');
+        $this->api_key      = config('library.sms.api_key');
+        $this->secret_key   = config('library.sms.secret_key');
+        $this->version      = config('library.sms.version');
+        $this->is_test      = config('library.sms.is_test');
     }
 
     /**
@@ -96,6 +98,7 @@ class Sms {
         if(!$token) {
             $postData = array(
                 'api_key' => $this->api_key,
+                'secret_key' => $this->secret_key,
             );
 
             $url = $this->getAPIMessageSendUrl() . '/auth.getToken';
