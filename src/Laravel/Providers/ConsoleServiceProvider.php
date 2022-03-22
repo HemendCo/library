@@ -4,8 +4,6 @@ namespace Hemend\Library\Laravel\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-use Hemend\Library\Laravel\Commands\ConfigPublish;
-
 class ConsoleServiceProvider extends ServiceProvider
 {
     /**
@@ -14,7 +12,6 @@ class ConsoleServiceProvider extends ServiceProvider
      * @var array
      */
     protected $commands = [
-        ConfigPublish::class,
     ];
 
     /**
