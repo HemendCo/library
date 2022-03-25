@@ -81,7 +81,7 @@ class Sms {
      * @param bool $is_test
      * @return string
      */
-    static public function _getCacheTokenKey(bool $is_test)
+    static protected function _getCacheTokenKey(bool $is_test)
     {
         return 'hemend_sms_token' . ($is_test ? '_test' : '');
     }
