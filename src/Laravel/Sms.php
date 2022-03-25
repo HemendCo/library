@@ -77,9 +77,13 @@ class Sms {
         return $result;
     }
 
-    private function _getCacheTokenKey()
+    /**
+     * @param bool $is_test
+     * @return string
+     */
+    static public function _getCacheTokenKey(bool $is_test)
     {
-        return 'token_' . $this->is_test;
+        return 'hemend_sms_token' . ($is_test ? '_test' : '');
     }
 
     /**
@@ -90,8 +94,7 @@ class Sms {
      */
     private function _getToken()
     {
-        $cache_token_key = $this->_getCacheTokenKey();
-//        cache()->forget($cache_token_key); // Delete cache
+        $cache_token_key = self::_getCacheTokenKey($this->is_test);
 
         $token = cache()->has($cache_token_key) ? cache($cache_token_key) : false;
 
@@ -112,6 +115,28 @@ class Sms {
         }
 
         return $token;
+    }
+
+    static public function allTokenCacheRemove()
+    {
+        self::tokenCacheRemove();
+        self::testTokenCacheRemove();
+    }
+
+    static public function tokenCacheRemove()
+    {
+        $cache_token_key = self::_getCacheTokenKey(false);
+        if(cache()->has($cache_token_key)) {
+            cache()->forget($cache_token_key);
+        }
+    }
+
+    static public function testTokenCacheRemove()
+    {
+        $cache_token_key = self::_getCacheTokenKey(true);
+        if(cache()->has($cache_token_key)) {
+            cache()->forget($cache_token_key);
+        }
     }
 
     /**
