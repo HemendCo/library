@@ -108,8 +108,8 @@ class Sms {
             $token_res = $this->_execute($postData, $url);
 
             if (is_object($token_res) && $token_res->status_code === 'OK') {
-                $token = $token_res->access->access_token;
-                $expire_time = strtotime($token_res->access->expires_in) - time() - 60;
+                $token = $token_res->token->access_token;
+                $expire_time = strtotime($token_res->token->expires_in) - time() - 60;
                 cache([$cache_token_key => $token], $expire_time);
             }
         }
