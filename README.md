@@ -1,4 +1,4 @@
-# library
+# php-library
 Use shields for your packagist.org repository that shows how many times your project has been downloaded from packagist.org or its latest stable version.
 
 [![Latest Stable Version](http://poser.pugx.org/hemend/library/v)](https://packagist.org/packages/hemend/library)
