@@ -3,7 +3,7 @@
 namespace Hemend\Library;
 
 class Files {
-	public static function generateFilenameAndpath(string $path, string $hash_id = null) {
+	public static function generateFilenameAndpath(string $path, string $hash_id = '') {
 		do {
 			$filename = self::generateFilename($hash_id);
 			$filepath = self::generateFilepath($path, $filename);
@@ -12,8 +12,8 @@ class Files {
 		return (object) ['name' => $filename, 'path' => $filepath];
 	}
 	
-	public static function generateFilename(string $hash_id = null) {
-    if(!$hash_id) {
+	public static function generateFilename(string $hash_id = '') {
+    if(!strlen($hash_id)) {
       $hash_id = Strings::generateRandomCode(8);
     }
 
