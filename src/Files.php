@@ -29,7 +29,7 @@ class Files {
         preg_match_all('/([a-z1-9]{1,1})/', $filename, $matches);
         $folders = array_slice($matches[0], 0, 3);
 
-        $folder_prefix = implode(DS, $folders);
+        $folder_prefix = implode(DIRECTORY_SEPARATOR, $folders);
         $folder = $path . DIRECTORY_SEPARATOR . $folder_prefix;
 
         if(!self::makeDir($folder)) {
