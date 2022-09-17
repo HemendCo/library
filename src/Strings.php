@@ -59,7 +59,7 @@ class Strings {
 	
 	public static function generateRandomCode($length = 6)
 	{
-		$pool = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$pool = '123456789abcdefghijklmnopqrstuvwxyz';
 		return substr(str_shuffle(str_repeat($pool, $length)), 0, $length);
 	}
 }
